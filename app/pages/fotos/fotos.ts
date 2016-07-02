@@ -1,14 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import {NavController} from 'ionic-angular';
+import { FotoPage } from '../fotos/foto';
 
 @Component({
     templateUrl: '/build/pages/fotos/fotos.html'
 })
 export class FotosPage implements OnInit {
     constructor(private navController: NavController) {
+        this.testRoot = FotoPage;     
+    
+}
 
-
-     }
+     private testRoot: any;
      public myArray = [
          {  objectId:1,
             name:'hello',
@@ -27,7 +30,7 @@ export class FotosPage implements OnInit {
     ngOnInit() { }
 
     clickMethod(item){
-        console.log(item);
+        this.navController.push(FotoPage,{item:item});
     }
 
 }
