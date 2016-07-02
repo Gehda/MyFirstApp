@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Fotos
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list class="fotos">
+    <ion-list-header>Choose a Foto</ion-list-header>
+    <ion-item class="fotos" [ngClass]="{cssClass: expression}" *ngFor="let item of myArray" (click)="clickMethod(item)">
+      <ion-icon name="ionic" item-left></ion-icon>
+      {{item.name}}
+    </ion-item>
+  </ion-list>
+</ion-content>
