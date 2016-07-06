@@ -1,40 +1,29 @@
 import { Component, OnInit } from '@angular/core';
 import {NavController} from 'ionic-angular';
 import { FotoPage } from '../fotos/foto';
+import { FotoService } from '../fotos/foto.service';
 
 @Component({
-    templateUrl: '/build/pages/fotos/fotos.html'
+    templateUrl: '/build/pages/fotos/fotos.html',
+    providers:[FotoService]
 })
 export class FotosPage implements OnInit {
-    constructor(private navController: NavController) {
+    constructor(private navController: NavController, private fotoService: FotoService) {
         this.testRoot = FotoPage;     
-    
+        
 }
 
      private testRoot: any;
-     public myArray = [
-         {  objectId:1,
-            name:'hello',
-            description:'it is this element',
-            icon:'laptop'
-        },{  objectId:2,
-            name:'hello123',
-            description:'it is this element',
-            icon:'book'
-        },{  objectId:3,
-            name:'hello321',
-            description:'it is this element',
-            icon:'american-football'
-        },{  objectId:4,
-            name:'hell123123o',
-            description:'it is this element',
-            icon:'leaf'
-        },
-     ]
-    ngOnInit() { }
+     public myArray = [];
+    ngOnInit():any {
+        this.fotoService.getFotos("Starwars").then(res => this.myArray=res);
+    }
 
     clickMethod(item){
         this.navController.push(FotoPage,{item:item});
+    }
+    deleteItem(item){
+        this.myArray.splice(this.myArray.indexOf(item),1);
     }
 
 }
