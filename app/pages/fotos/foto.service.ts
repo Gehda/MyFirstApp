@@ -13,10 +13,11 @@ export class FotoService {
         return this.http.get(`https://api.flickr.com/services/feeds/photos_public.gne?tags=${tag}&format=json&nojsoncallback=1`)
                         .toPromise()
                         .then(response => {
-                            let res = response.json();
-                            console.log(res);
-                            if(!res.items)return console.log(res);
-                            else return res.items;
+                            console.log(response.toString());
+                            const jsonRes = response.json();
+                            console.log(jsonRes);
+                            if(!jsonRes.items)return console.log(jsonRes);
+                            else return jsonRes.items;
                         })
                         .catch((response)=>console.log(response));
         
